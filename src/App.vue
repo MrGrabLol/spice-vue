@@ -9,5 +9,13 @@
 /* @import '~bootstrap';
 @import '~bootstrap-vue'; */
 </style>
+
+<script>
+  export default {
+    mounted() {
+
+    }
+  }
+</script>
  
 
