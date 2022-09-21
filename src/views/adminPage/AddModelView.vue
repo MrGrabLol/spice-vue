@@ -1,7 +1,7 @@
 <template>
-  <form action="http://localhost:8081/model" method="POST" enctype="multipart/form-data">
-    <input type="text" placeholder="Название" name="name" id="name">
-    <br>
+  <form action="http://localhost:8081/model" target="_blank" method="POST" enctype="multipart/form-data" @submit.native="submit($event)">
+    <label for="name">Название</label>
+    <input type="text" name="name" id="name">
     <input type="text" placeholder="Производитель" name="manufacturer">
     <br>
     <input type="text" placeholder="max Iд" name="maxI">
@@ -16,9 +16,9 @@
     <br>
     <input type="text" placeholder="Условия эксплуатации" name="useConditions">
     <br>
-    <input type="file" placeholder="Тех. описание" name="techLink">
+    <input type="file" placeholder="Тех. описание" accept="application/pdf" name="tech">
     <br>
-    <input type="file" placeholder="Ссылка" name="link">
+    <input type="file" placeholder="Ссылка" accept="application/pdf"  name="link">
     <br>
     <button type="submit">Добавить</button>
   </form>
@@ -41,6 +41,11 @@ export default {
       techLink: '',
       link: ''
 
+    }
+  },
+  methods: {
+    submit(event) {
+      this.$router.replace({name: 'AdminModels'})
     }
   }
 }

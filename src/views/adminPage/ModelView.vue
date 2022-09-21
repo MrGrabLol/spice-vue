@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <button class="add">
-      <router-link class="nav-link"  style="text-decoration: none;" to="/admin-page/edit">Добавить</router-link>
+      <router-link class="nav-link"  style="text-decoration: none;" to="/admin-page/create">Добавить</router-link>
     </button>
 
     <table class="table table-bordered">
@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, i) of list">
+        <tr v-for="(item) of list">
           <td>{{ item.name }}</td>
           <td>{{ item.manufacturer }}</td>
           <td>{{ item.maxI }}</td>
@@ -46,7 +46,7 @@
             </a>
           </td>
           <td><button type="button" class="fa fa-trash" @click="deleteItem(item.id)"></button></td>
-          <td><button type="button" class="fa fa-edit"></button></td>
+          <td><button type="button" class="fa fa-edit"><router-link :to="'/admin-page/model/' + item.id" /></button></td>
         </tr>
       </tbody>
     </table>

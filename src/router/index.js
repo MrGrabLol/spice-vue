@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import EditModelView from "@/views/adminPage/EditModelView";
 
 Vue.use(VueRouter);
 
@@ -37,22 +38,26 @@ const routes = [
         component: () => import("../views/adminPage/AdminView.vue"),
         children: [
             {
-                path: "model",
+                path: "/admin-page/model",
                 name: "AdminModels",
                 component: () => import("../views/adminPage/ModelView.vue"),
-            },
 
+            },
             {
-                path: "edit",
-                name: "AdminModelEdit",
+                path: "create",
+                name: "AdminModelCreate",
                 component: () => import("../views/adminPage/AddModelView.vue"),
             },
-
             {
                 path: "request",
                 name: "AdminRequest",
                 component: () => import("../views/adminPage/RequestView.vue"),
             },
+            {
+                path: "model/:id",
+                props: true,
+                component: EditModelView,
+            }
         ],
     },
 ];
