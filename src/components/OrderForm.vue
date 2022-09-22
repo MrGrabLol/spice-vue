@@ -6,7 +6,7 @@
                 <div class="f">
                     <input type="text" id="name" placeholder="ФИО" v-model="fio" />
                 </div>
-                
+
                 <div class="n">
                     <input type="text" id="company" placeholder="Наименование организации" v-model="company" />
                 </div>
@@ -25,15 +25,21 @@
                 <div class="type-info">
                     <label for="type">Тип прибора</label>
                     <br />
-                    <input type="text" id="type" list="options" placeholder="Выберите тип прибора"
-                        v-model="modeltype" />
+                    <!-- <input type="text" id="type" list="options" placeholder="Выберите тип прибора"
+                        v-model="modeltype" /> -->
+                    <select class="form-control" id="type" placeholder="Выберите тип прибора" v-model="modeltype">
+                        <option>Диод</option>
+                        <option>Транзистор</option>
+                        <option>Трансформатор</option>
+                        <option>Оп. усилитель</option>
+                    </select>
                 </div>
-                <datalist id="options">
+                <!-- <datalist id="options">
                     <option value="Диод"></option>
                     <option value="Транзистор"></option>
                     <option value="Трансформатор"></option>
                     <option value="Оп. усилитель"></option>
-                </datalist>
+                </datalist> -->
                 <label for="texta">Комментарий</label>
                 <br />
                 <textarea name="comments" id="texta" cols="20" rows="5" v-model="comment"></textarea>
@@ -133,6 +139,16 @@ export default {
     /* display: none; */
 }
 
+.form-control {
+    width: 600px;
+    height: 50px;
+    border: 2px solid rgb(31, 147, 201);
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: 5px;
+}
+
 input {
     text-align: center;
     font-size: 18px;
@@ -208,5 +224,9 @@ input {
     /* border: 2px solid blue; */
     margin: 5px;
     margin-bottom: 10px;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+
 }
 </style>

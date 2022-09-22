@@ -7,6 +7,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+          <th scope="col">Id</th>
           <th scope="col">Название</th>
           <th scope="col">Производитель</th>
           <th scope="col">max Iд, А</th>
@@ -23,6 +24,7 @@
       </thead>
       <tbody>
         <tr v-for="(item) of list">
+          <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.manufacturer }}</td>
           <td>{{ item.maxI }}</td>
@@ -46,7 +48,7 @@
             </a>
           </td>
           <td><button type="button" class="fa fa-trash" @click="deleteItem(item.id)"></button></td>
-          <td><button type="button" class="fa fa-edit"><router-link :to="'/admin-page/model/' + item.id" /></button></td>
+          <td><button class="fa fa-edit"><router-link class="nav-link" to="/admin-page/model/:id"></router-link></button></td>
         </tr>
       </tbody>
     </table>
@@ -78,6 +80,11 @@ export default {
 
       })
       this.$router.go(0)
+    },
+    makeLink(id) {
+      let a = '/admin-page/model/'
+      a = a + id
+      return a
     }
   }
 }

@@ -9,6 +9,7 @@
         <label for="manufacturer">Производитель</label>
         <input type="text" class="form-control" id="manufacturer" v-model="this.manufacturer">
       </div>
+      <br>
       <div class="form-group row">
         <label for="maxI">maxI</label>
         <input type="number" step="0.000001" class="form-control" id="maxI" v-model="this.maxI">
@@ -17,6 +18,7 @@
         <label for="maxU">maxU</label>
         <input type="number" step="0.000001" class="form-control" id="maxU" v-model="this.maxU">
       </div>
+      <br>
       <div class="form-group row">
         <label for="maxProbU">maxProbU</label>
         <input type="number" step="0.000001" class="form-control" id="maxProbU" v-model="this.maxProbU">
@@ -25,6 +27,7 @@
         <label for="maxP">maxP</label>
         <input type="number" step="0.000001" class="form-control" id="maxP" v-model="this.maxP">
       </div>
+      <br>
       <div class="form-group row">
         <label for="box">Корпус</label>
         <input type="text" class="form-control" id="box" v-model="this.box">
@@ -33,6 +36,7 @@
         <label for="useConditions">Условия использования</label>
         <input type="text" class="form-control" id="useConditions" v-model="this.useConditions">
       </div>
+      <br>
       <div class="form-group row">
         <label for="techLink">Тех. документация</label>
         <input type="url" class="form-control" id="techLink" v-model="this.techLink">
@@ -41,6 +45,7 @@
         <label for="link">Ссылка</label>
         <input type="url" class="form-control" id="link" v-model="this.link">
       </div>
+      <br>
       <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
   </div>
@@ -88,6 +93,21 @@ export default {
 }
 </script>
 
-<style scoped>
 
+
+<style scoped>
+.container {
+  text-align: center;
+  vertical-align: middle;
+}
+
+input {
+  width: 400px;
+}
+
+.form-group {
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 4px;
+}
 </style>
