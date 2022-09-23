@@ -1,57 +1,54 @@
 <template>
   <div class="container">
-    <form action="http://localhost:8081/model" target="_blank" method="POST" enctype="multipart/form-data"
-      @submit.native="submit($event)">
-      <label for="name">Название</label>
-      <br>
-      <input type="text" name="name" id="name">
-      <br>
-      <label for="manufac">Производитель</label>
-      <br>
-      <input type="text" name="manufacturer" id="manufac">
-      <br>
-      <div class="numbers">
-        <div class="num-info">
-          <label for="p">max P</label>
-          <br>
-          <input type="text" name="maxP" id="p">
-          <br>
-          <label for="u">max Uд</label>
-          <br>
-          <input type="text" name="maxU" id="u">
-        </div>
-        <div class="num-info">
-          <label for="i">max Iд</label>
-          <br>
-          <input type="text" name="maxI" id="i">
-          <br>
-          <label for="probu">max ПробU</label>
-          <br>
-          <input type="text" name="maxProbU" id="probu">
-        </div>
+    <label for="name">Название</label>
+    <br>
+    <input type="text" name="name" id="name" v-model="name">
+    <br>
+    <label for="manufac">Производитель</label>
+    <br>
+    <input type="text" name="manufacturer" id="manufac" v-model="manufacturer">
+    <br>
+    <div class="numbers">
+      <div class="num-info">
+        <label for="p">max P</label>
+        <br>
+        <input type="text" name="maxP" id="p" v-model="maxP">
+        <br>
+        <label for="u">max Uд</label>
+        <br>
+        <input type="text" name="maxU" id="u" v-model="maxU">
       </div>
-      <label for="box">Корпус</label>
-      <br>
-      <input type="text" name="box" id="box">
-      <br>
-      <label for="cond">Условия эксплуатации</label>
-      <br>
-      <input type="text" name="useConditions" id="cond">
-      <br>
-      <div class="numbers">
-        <div class="file-info">
-          <label for="tech">Тех. описание</label>
-          <br>
-          <input type="file" accept="application/pdf" name="tech" id="tech">
-        </div>
-        <div class="file-info">
-          <label for="link">Ссылка</label>
-          <br>
-          <input type="file" accept="application/pdf" name="link" id="link">
-        </div>
+      <div class="num-info">
+        <label for="i">max Iд</label>
+        <br>
+        <input type="text" name="maxI" id="i" v-model="maxI">
+        <br>
+        <label for="probu">max ПробU</label>
+        <br>
+        <input type="text" name="maxProbU" id="probu" v-model="maxProbU">
       </div>
-      <button type="submit" class="btn btn-success">Добавить</button>
-    </form>
+    </div>
+    <label for="box">Корпус</label>
+    <br>
+    <input type="text" name="box" id="box" v-model="box">
+    <br>
+    <label for="cond">Условия эксплуатации</label>
+    <br>
+    <input type="text" name="useConditions" id="cond" v-model="useConditions">
+    <br>
+    <div class="numbers">
+      <div class="file-info">
+        <label for="tech">Тех. описание</label>
+        <br>
+        <input type="file" accept="application/pdf" name="tech" id="tech">
+      </div>
+      <div class="file-info">
+        <label for="link">Ссылка</label>
+        <br>
+        <input type="file" accept="application/pdf" name="link" id="link">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success" :disabled="disabled" @click="submit">Добавить</button>
   </div>
 </template>
 
@@ -61,6 +58,7 @@ export default {
   name: "AddModelView",
   data() {
     return {
+      disabled: false,
       name: '',
       manufacturer: '',
       maxI: '',
@@ -75,8 +73,29 @@ export default {
     }
   },
   methods: {
-    submit(event) {
-      this.$router.replace({ name: 'AdminModels' })
+    submit() {
+      this.disabled = true
+      const input = document.querySelector('input[id="tech"]');
+      const input2 = document.querySelector('input[id="link"]');
+      const data = new FormData();
+      console.log(input.files)
+      console.log(input2.files)
+      data.append('tech', input.files[0])
+      data.append('link', input2.files[0])
+      data.append('name', this.name)
+      data.append('manufacturer', this.manufacturer)
+      data.append('maxI', this.maxI)
+      data.append('maxU', this.maxU)
+      data.append('maxProbU', this.maxProbU)
+      data.append('maxP', this.maxP)
+      data.append('box', this.box)
+      data.append('useConditions', this.useConditions)
+      fetch('http://localhost:8081/model', {
+        method: 'POST',
+        body: data
+      })
+      new Promise(resolve => setTimeout(resolve, 1000))
+          .then(() => this.$router.back())
     }
   }
 }

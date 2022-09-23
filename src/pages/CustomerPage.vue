@@ -8,22 +8,22 @@
           <table>
             <tr>
               <td>
-                <router-link style="text-decoration: none;" to="/customer-page/home">Главная</router-link>
+                <router-link style="text-decoration: none;" to="/home">Главная</router-link>
               </td>
             </tr>
             <tr>
               <td>
-                <router-link style="text-decoration: none;" to="/customer-page/about">Контакты</router-link>
+                <router-link style="text-decoration: none;" to="/about">Контакты</router-link>
               </td>
             </tr>
             <tr>
               <td>
-                <router-link style="text-decoration: none;" to="/customer-page/models">Модели</router-link>
+                <router-link style="text-decoration: none;" to="/models">Модели</router-link>
               </td>
             </tr>
             <tr>
               <td>
-                <router-link style="text-decoration: none;" to="/customer-page/order">Заказать модель</router-link>
+                <router-link style="text-decoration: none;" to="/order">Заказать модель</router-link>
               </td>
             </tr>
           </table>

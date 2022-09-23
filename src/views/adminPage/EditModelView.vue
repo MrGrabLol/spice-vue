@@ -1,53 +1,51 @@
 <template>
   <div class="container">
-    <form :action="'http://localhost:8081/model/' + this.id" method="POST" enctype="multipart/form-data">
       <div class="form-group row">
         <label for="name">Название</label>
-        <input type="text" class="form-control" id="name" v-model="this.name">
+        <input type="text" class="form-control" id="name" v-model="name">
       </div>
       <div class="form-group row">
         <label for="manufacturer">Производитель</label>
-        <input type="text" class="form-control" id="manufacturer" v-model="this.manufacturer">
+        <input type="text" class="form-control" id="manufacturer" v-model="manufacturer">
       </div>
       <br>
       <div class="form-group row">
         <label for="maxI">maxI</label>
-        <input type="number" step="0.000001" class="form-control" id="maxI" v-model="this.maxI">
+        <input type="number" step="0.000001" class="form-control" id="maxI" v-model="maxI">
       </div>
       <div class="form-group row">
         <label for="maxU">maxU</label>
-        <input type="number" step="0.000001" class="form-control" id="maxU" v-model="this.maxU">
+        <input type="number" step="0.000001" class="form-control" id="maxU" v-model="maxU">
       </div>
       <br>
       <div class="form-group row">
         <label for="maxProbU">maxProbU</label>
-        <input type="number" step="0.000001" class="form-control" id="maxProbU" v-model="this.maxProbU">
+        <input type="number" step="0.000001" class="form-control" id="maxProbU" v-model="maxProbU">
       </div>
       <div class="form-group row">
         <label for="maxP">maxP</label>
-        <input type="number" step="0.000001" class="form-control" id="maxP" v-model="this.maxP">
+        <input type="number" step="0.000001" class="form-control" id="maxP" v-model="maxP">
       </div>
       <br>
       <div class="form-group row">
         <label for="box">Корпус</label>
-        <input type="text" class="form-control" id="box" v-model="this.box">
+        <input type="text" class="form-control" id="box" v-model="box">
       </div>
       <div class="form-group row">
         <label for="useConditions">Условия использования</label>
-        <input type="text" class="form-control" id="useConditions" v-model="this.useConditions">
+        <input type="text" class="form-control" id="useConditions" v-model="useConditions">
       </div>
       <br>
       <div class="form-group row">
         <label for="techLink">Тех. документация</label>
-        <input type="url" class="form-control" id="techLink" v-model="this.techLink">
+        <input type="url" class="form-control" id="techLink" v-model="techLink">
       </div>
       <div class="form-group row">
         <label for="link">Ссылка</label>
-        <input type="url" class="form-control" id="link" v-model="this.link">
+        <input type="url" class="form-control" id="link" v-model="link">
       </div>
       <br>
-      <button type="submit" class="btn btn-primary">Сохранить</button>
-    </form>
+      <button type="submit" class="btn btn-primary" @click="edit">Сохранить</button>
   </div>
 </template>
 
@@ -89,6 +87,30 @@ export default {
           this.techLink = json.techLink
           this.link = json.link
         })
+  },
+  methods: {
+    edit() {
+      let body = {
+        name: this.name,
+        manufacturer: this.manufacturer,
+        maxI: this.maxI,
+        maxU: this.maxU,
+        maxProbU: this.maxProbU,
+        maxP: this.maxP,
+        box: this.box,
+        useConditions: this.useConditions,
+        techLink: this.techLink,
+        link: this.link
+      }
+      fetch("http://localhost:8081/model/" + this.id, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      }).then(() => this.$router.back())
+    }
   }
 }
 </script>

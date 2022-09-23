@@ -48,7 +48,9 @@
             </a>
           </td>
           <td><button type="button" class="fa fa-trash" @click="deleteItem(item.id)"></button></td>
-          <td><button class="fa fa-edit"><router-link class="nav-link" to="/admin-page/model/:id"></router-link></button></td>
+          <td>
+            <router-link class="fa fa-edit" tag="button" :to="'/admin-page/model/' + item.id"></router-link>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -80,11 +82,6 @@ export default {
 
       })
       this.$router.go(0)
-    },
-    makeLink(id) {
-      let a = '/admin-page/model/'
-      a = a + id
-      return a
     }
   }
 }

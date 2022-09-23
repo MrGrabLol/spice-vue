@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: "/customer-page",
+        path: "/",
         name: "CP",
         component: () => import("../pages/CustomerPage.vue"),
         children: [
